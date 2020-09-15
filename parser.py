@@ -23,12 +23,16 @@ async def request(headers: Dict, url: str) -> str:
 
 async def html_processing() -> None:
     soup = BeautifulSoup(await request(user_agent, olx_link), 'html.parser')
-    title = soup.select('a.marginright5.link.linkWithHash.detailsLink>strong')
-    price = soup.select('p.price')
-    data = soup.select('small.breadcrumb.x-normal>span')
-    print('Название продукта: ', title)
-    print('Цена продукта: ', price)
-    print('Дата объявлений: ', data)
+    for html in soup.select('div.offer-wrapper'):
+        title = html.select('a.marginright5.link.linkWithHash.detailsLink>strong')
+        price = html.select('p.price>strong')
+        data = html.select('small.breadcrumb.x-normal>span')
+
+        print(f'''
+Название товара: {title},
+Цена товара: {price},
+Дата публикации: {data}
+        ''')
 
 
 if __name__ == '__main__':
