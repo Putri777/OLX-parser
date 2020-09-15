@@ -6,6 +6,16 @@ from asyncio import get_event_loop
 from bs4 import BeautifulSoup
 
 
+async def request_for_check_page(headers: Dict, url: str) -> None:
+    session = ClientSession()
+    async with session.get(headers=headers, url=url) as response:
+        content = await response.text()
+    await session.close()
+    soup = BeautifulSoup(content, 'html.parser')
+    url = soup.select('a.block.br3.brc8.large.tdnone.lheight24')
+    print(url)
+
+
 user_agent = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36'
 }
@@ -37,5 +47,6 @@ async def html_processing() -> None:
 
 if __name__ == '__main__':
     loop = get_event_loop()
-    loop.run_until_complete(html_processing())
-
+    # loop.run_until_complete(html_processing())
+    loop.run_until_complete(
+        request_for_check_page(user_agent, 'https://www.olx.kz/kokshetau/q-%D0%BA%D1%80%D0%BE%D0%BB%D0%B8%D0%BA/'))
