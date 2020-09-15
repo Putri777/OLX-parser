@@ -6,7 +6,13 @@ from asyncio import get_event_loop
 from bs4 import BeautifulSoup
 
 
-async def request_for_check_page(headers: Dict, url: str) -> None:
+async def request_for_check_page(headers: Dict, url: str) -> None:  # Testing function
+    """
+    Тестирующий код
+    :param headers: Dict
+    :param url: str
+    :return: None
+    """
     session = ClientSession()
     async with session.get(headers=headers, url=url) as response:
         content = await response.text()
