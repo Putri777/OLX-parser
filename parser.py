@@ -13,7 +13,9 @@ async def request_for_check_page(headers: Dict, url: str) -> None:
     await session.close()
     soup = BeautifulSoup(content, 'html.parser')
     url = soup.select('a.block.br3.brc8.large.tdnone.lheight24')
-    print(url)
+
+    for x in soup.select('a.block.br3.brc8.large.tdnone.lheight24'):
+        print(x.select('href'))
 
 
 user_agent = {
