@@ -21,9 +21,11 @@ async def request(headers: Dict, url: str) -> str:
 
 
 async def html_processing() -> None:
-    pass
+    soup = BeautifulSoup(await request(user_agent, olx_link), 'html.parser')
+    for strong in soup.select('strong'):
+        print(strong)
 
 if __name__ == '__main__':
     loop = get_event_loop()
-    loop.run_until_complete(request(user_agent, olx_link))
+    loop.run_until_complete(html_processing())
 
