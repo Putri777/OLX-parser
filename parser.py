@@ -19,5 +19,7 @@ async def request(headers: Dict, url: str) -> None:
         print(content)
 
 
-
+if __name__ == '__main__':
+    loop = get_event_loop()
+    loop.run_until_complete(request(user_agent, olx_link))
 
