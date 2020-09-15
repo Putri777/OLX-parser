@@ -20,7 +20,8 @@ async def request(headers: Dict, url: str) -> str:
     return content
 
 
-
+async def html_processing() -> None:
+    pass
 
 if __name__ == '__main__':
     loop = get_event_loop()
