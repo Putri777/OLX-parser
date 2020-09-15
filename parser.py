@@ -16,14 +16,17 @@ async def request(headers: Dict, url: str) -> str:
     session = ClientSession()
     async with session.get(headers=headers, url=url) as response:
         content = await response.text()
+    await session.close()
 
     return content
 
 
 async def html_processing() -> None:
     soup = BeautifulSoup(await request(user_agent, olx_link), 'html.parser')
-    for strong in soup.select('strong'):
-        print(strong)
+    for strong in soup.select('.offer-wrapper'):
+        print(strong.text)
+
+
 
 if __name__ == '__main__':
     loop = get_event_loop()
