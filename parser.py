@@ -12,11 +12,14 @@ user_agent = {
 olx_link = 'https://www.olx.kz/kokshetau/q-%D0%BA%D1%80%D0%BE%D0%BB%D0%B8%D0%BA/'
 
 
-async def request(headers: Dict, url: str) -> None:
+async def request(headers: Dict, url: str) -> str:
     session = ClientSession()
     async with session.get(headers=headers, url=url) as response:
         content = await response.text()
-        print(content)
+
+    return content
+
+
 
 
 if __name__ == '__main__':
