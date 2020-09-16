@@ -9,6 +9,7 @@ verify_ssl = true
 aiohttp = "*"
 beautifulsoup4 = "*"
 selenium = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.8"
