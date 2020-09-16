@@ -8,17 +8,18 @@ class HtmlHandler:
         self.request = request
 
     async def html_processing(self) -> None:
-        # product = str(input('Введите название продукта: '))
+        links = []
         soup = BeautifulSoup(await self.request.request(), 'lxml')
         for html in soup.select('div.offer-wrapper'):
-            title = html.select_one('a.marginright5.link.linkWithHash.detailsLink strong').get_text()
-            price = html.select_one('p.price>strong').get_text()
-            data = html.select_one('small.breadcrumb.x-normal>span').get_text()
             url = html.select_one('a.marginright5.link.linkWithHash.detailsLink')['href']
-
-            print(f'''
-    Название товара: {title},
-    Цена товара: {price},
-    Дата публикации: {data},
-    Ссылка на товар: {url}
-            ''')
+            links.append(url)
+            # title = html.select_one('a.marginright5.link.linkWithHash.detailsLink strong').get_text()
+            # price = html.select_one('p.price>strong').get_text()
+            # data = html.select_one('small.breadcrumb.x-normal>span').get_text()
+    #         print(f'''
+    # Название товара: {title},
+    # Цена товара: {price},
+    # Дата публикации: {data},
+    # Ссылка на товар: {url}
+    #         ''')
+    #         print(links)
