@@ -1,6 +1,3 @@
-from asyncio import get_event_loop
-from typing import Dict
-
 from bs4 import BeautifulSoup
 
 from .request import Request
@@ -25,9 +22,3 @@ class HtmlHandler:
     Дата публикации: {data},
     Ссылка на товар: {url}
             ''')
-
-
-# if __name__ == '__main__':
-#     html_handler = HtmlHandler(Request({'User-Agent'}, 'qwe'))
-#     loop = get_event_loop()
-#     loop.run_until_complete(html_handler.html_processing())
