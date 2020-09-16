@@ -7,16 +7,18 @@ from .request import request
 
 async def html_processing() -> None:
     product = str(input('Введите название продукта: '))
-    soup = BeautifulSoup(await request(product), 'html.parser')
+    soup = BeautifulSoup(await request(product), 'lxml')
     for html in soup.select('div.offer-wrapper'):
-        title = html.select('a.marginright5.link.linkWithHash.detailsLink>strong')
-        price = html.select('p.price>strong')
-        data = html.select('small.breadcrumb.x-normal>span')
+        title = html.select_one('a.marginright5.link.linkWithHash.detailsLink strong').get_text()
+        price = html.select_one('p.price>strong').get_text()
+        data = html.select_one('small.breadcrumb.x-normal>span').get_text()
+        url = html.select_one('a.marginright5.link.linkWithHash.detailsLink')['href']
 
         print(f'''
 Название товара: {title},
 Цена товара: {price},
-Дата публикации: {data}
+Дата публикации: {data},
+Ссылка на товар: {url}
         ''')
 
 
