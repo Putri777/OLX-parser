@@ -13,16 +13,14 @@ user_agent = {
 async def request() -> str:
     product = str(input('Введите название продукта: '))
     session = ClientSession()
-    async with session.get(headers=user_agent, url='https://www.olx.kz/kokshetau/q-' + product) as response:
+    async with session.get(headers=user_agent, url=f'https://www.olx.kz/kokshetau/q-{product}') as response:
         content = await response.text()
     await session.close()
 
     return content
 
 
-
-
 if __name__ == '__main__':
     loop = get_event_loop()
     # loop.run_until_complete(html_processing())
-    loop.run_until_complete(request())
+    print(loop.run_until_complete(request()))
