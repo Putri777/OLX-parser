@@ -6,10 +6,18 @@ from .request import Request
 
 
 class PageParser:
-    def __init__(self, request: Request):
+    def __init__(self, request: Request) -> None:
+        """
+        constructor takes one parameter `Request`
+        :param request: Request
+        """
         self.request = request
 
-    async def page_parse(self) -> List:
+    async def page_parse(self) -> List[str]:
+        """
+        The function parse pages
+        :return: List
+        """
         product = str(input('Ведите название продукта: '))
         pages_list = []
         soup = BeautifulSoup(await self.request.request(product), 'lxml')
