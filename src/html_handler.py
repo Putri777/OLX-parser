@@ -6,10 +6,18 @@ from .request import Request
 
 
 class HtmlHandler:
-    def __init__(self, request: Request):
+    def __init__(self, request: Request) -> None:
+        """
+        Constructor takes one parameter `request`
+        :param request: Request
+        """
         self.request = request
 
     async def html_processing(self) -> List[str]:
+        """
+        The method returns links to the  product in the List
+        :return: List[str]
+        """
         product = str(input('Ведите название продукта: '))
         links = []
         soup = BeautifulSoup(await self.request.request(product), 'lxml')
