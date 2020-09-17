@@ -11,7 +11,7 @@ async def async_main():
     request = Request(user_agent=user_agent)
     html_handler = HtmlHandler(request)
     await html_handler.html_processing()
-
+    await html_handler.page_parser()
 
 def main():
     run(async_main())
