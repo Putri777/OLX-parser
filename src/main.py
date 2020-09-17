@@ -13,8 +13,8 @@ async def async_main():
     html_handler = HtmlHandler(request)
     page_parser = PageParser(request)
 
-    await html_handler.html_processing()
-    await page_parser.page_parse()
+    print(await html_handler.html_processing())
+    print(await page_parser.page_parse())
 
 
 def main():

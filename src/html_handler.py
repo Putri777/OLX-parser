@@ -10,9 +10,9 @@ class HtmlHandler:
         self.request = request
 
     async def html_processing(self) -> List[str]:
-        # product = str(input('Ведите название продукта: '))
+        product = str(input('Ведите название продукта: '))
         links = []
-        soup = BeautifulSoup(await self.request.request('квартира'), 'lxml')
+        soup = BeautifulSoup(await self.request.request(product), 'lxml')
         for html in soup.select('div.offer-wrapper'):
             url = html.select_one('a.marginright5.link.linkWithHash.detailsLink')['href']
             links.append(url)
