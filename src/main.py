@@ -1,5 +1,6 @@
 from asyncio import run
 
+from .browser import Browser
 from .html_handler import HtmlHandler
 from .page_parser import PageParser
 from .request import Request
@@ -16,9 +17,12 @@ async def async_main() -> None:
     request = Request(user_agent=user_agent)
     html_handler = HtmlHandler(request)
     page_parser = PageParser(request)
+    browser = Browser()
 
-    print(await html_handler.html_processing())
-    print(await page_parser.page_parse())
+    # print(await html_handler.html_processing())
+    # print(await page_parser.page_parse())
+    await browser.get_html(await html_handler.html_processing())
+
 
 
 def main() -> None:
