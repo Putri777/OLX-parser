@@ -1,6 +1,7 @@
 from asyncio import run
 
 from .html_handler import HtmlHandler
+from .page_parser import PageParser
 from .request import Request
 
 
@@ -10,8 +11,11 @@ async def async_main():
     }
     request = Request(user_agent=user_agent)
     html_handler = HtmlHandler(request)
+    page_parser = PageParser(request)
+
     await html_handler.html_processing()
-    await html_handler.page_parser()
+    await page_parser.page_parse()
+
 
 def main():
     run(async_main())
