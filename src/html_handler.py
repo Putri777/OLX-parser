@@ -16,24 +16,4 @@ class HtmlHandler:
         for html in soup.select('div.offer-wrapper'):
             url = html.select_one('a.marginright5.link.linkWithHash.detailsLink')['href']
             links.append(url)
-            # title = html.select_one('a.marginright5.link.linkWithHash.detailsLink strong').get_text()
-            # price = html.select_one('p.price>strong').get_text()
-            # data = html.select_one('small.breadcrumb.x-normal>span').get_text()
-    #         print(f'''
-    # Название товара: {title},
-    # Цена товара: {price},
-    # Дата публикации: {data},
-    # Ссылка на товар: {url}
-    #         ''')
-
         return links
-
-    async def page_parser(self):
-        soup = BeautifulSoup(await self.request.request('кролик'), 'lxml')
-        for pages in soup.select('div.pager.rel.clr>span.item.fleft'):
-            a = pages.select_one('a')
-            if a is None:
-                a = None
-            else:
-                b = pages.select_one('a')['href']
-                print(b)
