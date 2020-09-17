@@ -4,14 +4,13 @@ from aiohttp import ClientSession
 
 
 class Request:
-    def __init__(self, user_agent: Dict, product: str) -> None:
+    def __init__(self, user_agent: Dict) -> None:
         self.user_agent = user_agent
-        self.product = product
 
-    async def request(self) -> str:
+    async def request(self, product: str) -> str:
         session = ClientSession()
         async with session.get(headers=self.user_agent,
-                               url=f'https://www.olx.kz/kokshetau/q-{self.product}') as response:
+                               url=f'https://www.olx.kz/kokshetau/q-{product}') as response:
             content = await response.text()
         await session.close()
 
