@@ -26,6 +26,10 @@ class HtmlHandler:
     # Ссылка на товар: {url}
     #         ''')
 
+        return links
+
+    async def page_parser(self):
+        soup = BeautifulSoup(await self.request.request('кролик'), 'lxml')
         for pages in soup.select('div.pager.rel.clr>span.item.fleft'):
             a = pages.select_one('a')
             if a is None:
@@ -33,4 +37,3 @@ class HtmlHandler:
             else:
                 b = pages.select_one('a')['href']
                 print(b)
-        return links
