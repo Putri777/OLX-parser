@@ -1,4 +1,5 @@
 from selenium import webdriver
+from bs4 import BeautifulSoup
 
 
 class Browser:
@@ -15,4 +16,6 @@ class Browser:
             except:
                 pass
             print(driver.page_source)
+
+
 
