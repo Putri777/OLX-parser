@@ -13,9 +13,20 @@ class Browser:
             try:
                 elem = driver.find_element_by_css_selector('span.button.inverted.spoiler')
                 elem.click()
+                soup = BeautifulSoup(driver.page_source, 'lxml')
+                title = soup.select_one('div.offer-titlebox>h1').get_text()
+                price = soup.select_one('strong.pricelabel__value.not-arranged').get_text()
+                description = soup.select_one('div.clr.lheight20.large').get_text()
+                phone = soup.select_one('div.contactitem>strong').get_text()
+                print(f'''
+Название: {title}
+Цена: {price}
+Описание: {description}
+Номер телефона: {phone}
+Ссылка на товар: {x}
+''')
             except:
                 pass
-            print(driver.page_source)
-
+            # print(driver.page_source)
 
 
