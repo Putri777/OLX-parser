@@ -3,17 +3,15 @@ from typing import List
 from bs4 import BeautifulSoup
 
 from .request import Request
-from .browser import Browser
 
 
 class HtmlHandler:
-    def __init__(self, request: Request, browser: Browser) -> None:
+    def __init__(self, request: Request) -> None:
         """
         Constructor takes one parameter `request`
         :param request: Request
         """
         self.request = request
-        self.browser = browser
 
     async def html_processing(self) -> List[str]:
         """
