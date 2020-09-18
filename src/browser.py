@@ -32,4 +32,18 @@ class Browser:
                 pass
             # print(driver.page_source)
 
+    async def give_html(self, links):
+        driver = webdriver.Chrome('/home/dizinnes/Downloads/chromedriver')
+        for x in links:
+            driver.get(x)
+            try:
+                print('руыв')
+                elem = driver.find_element_by_css_selector('span.button.inverted.spoiler')
+                elem.click()
+                time.sleep(0.2)
+                return driver.page_source
+                # soup = BeautifulSoup(driver.page_source, 'lxml')
+            except:
+                pass
+        # return driver.page_source
 
