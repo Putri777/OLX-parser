@@ -1,3 +1,5 @@
+import time
+
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
@@ -13,6 +15,7 @@ class Browser:
             try:
                 elem = driver.find_element_by_css_selector('span.button.inverted.spoiler')
                 elem.click()
+                time.sleep(0.2)
                 soup = BeautifulSoup(driver.page_source, 'lxml')
                 title = soup.select_one('div.offer-titlebox>h1').get_text()
                 price = soup.select_one('strong.pricelabel__value.not-arranged').get_text()
